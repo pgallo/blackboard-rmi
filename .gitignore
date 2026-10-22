@@ -1,0 +1,14 @@
+# build output
+build/
+target/
+*.class
+*.jar
+
+# IDE and OS
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+.DS_Store

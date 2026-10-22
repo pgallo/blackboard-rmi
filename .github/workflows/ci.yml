@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Maven build and test
+        run: mvn -B test
+      - name: Dependency-free build and test (javac + in-repo runner)
+        run: scripts/build.sh
+      - name: Distributed demo (separate JVMs over RMI on localhost)
+        run: scripts/demo.sh --duration 6
